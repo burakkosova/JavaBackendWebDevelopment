@@ -15,6 +15,10 @@ public class Main {
                  count++;
              }
          }
+
+         if(count == 0)
+             count = 1;
+
         System.out.println("3 ve 4'e tam bölünen sayıların ortalaması : " + (double) total/count);
     }
 }
