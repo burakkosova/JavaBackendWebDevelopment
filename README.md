@@ -1,15 +1,15 @@
-# Kodluyoruz Ilk Repo
+# Java ile Backend Web Development Patikası
 
-Bu repo [Kodluyoruz](https://kodluyoruz.org) Front-End eğitiminde oluşturduğumuz ilk repo. İçerisinde bir adet README dosyası, bir adet de index.html barındırıyor.
+Bu repo [Patika](https://https://app.patika.dev/) Java ile Backend Web Development eğitiminde oluşturduğum repo. İçerisinde java101, object oriented programming, sql ve java102 eğitimlerindeki ödevleri ve bitirme projelerini içeriyor. 
 
-![Kodluyoruz logo](https://github.com/burakkosova/kodluyoruzilkrepo/blob/main/figures/kodluyoruz.png)
+![Kodluyoruz logo](https://github.com/burakkosova/JavaBackendWebDevelopment/blob/main/figures/kodluyoruz.png)
 
 # Installation
 
 Öncelikle projeyi clonelayın.
 
 ```
-git clone https://github.com/burakkosova/kodluyoruzilkrepo.git
+git clone https://github.com/burakkosova/JavaBackendWebDevelopment.git
 ```
 
 # Usage
