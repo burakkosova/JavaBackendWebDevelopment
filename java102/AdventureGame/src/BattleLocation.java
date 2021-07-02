@@ -22,18 +22,20 @@ public class BattleLocation extends Location {
 		String selectCase = Game.scan.nextLine().toUpperCase();
 		if (selectCase.equals("S")) {
 			int result = combat(enemyNumber);
-			if(result == 0) 
+			if (result == 0)
 				return false;
-			else if(result == 1)
+			else if (result == 1)
 				return true;
 			else {
 				System.out.println("Tebrikler " + this.getName() + " temizlendi!!!");
-				System.out.println(this.award + " KAZANILDI!!!");
-				this.getPlayer().getInventory().addAward(this.award);
-				
+				if (this.award != null) {
+					System.out.println(this.award + " KAZANILDI!!!");
+					this.getPlayer().getInventory().addAward(this.award);
+				}
+
 				System.out.println();
 				System.out.print("Sahip olduðun ödüller: ");
-				for(int i=0; i<this.getPlayer().getInventory().getAwards().size(); i++) {
+				for (int i = 0; i < this.getPlayer().getInventory().getAwards().size(); i++) {
 					System.out.print(this.getPlayer().getInventory().getAwards().get(i) + " ");
 				}
 				System.out.println();
@@ -44,46 +46,54 @@ public class BattleLocation extends Location {
 
 	public int combat(int enemyNumber) {
 		int rand;
-		for(int i=1; i<=enemyNumber; i++) {
+		for (int i = 1; i <= enemyNumber; i++) {
 			getPlayer().printInfo();
-			while(this.getPlayer().getCharacter().getHealth() > 0 && this.getEnemy().getHealth() > 0) {
+			while (this.getPlayer().getCharacter().getHealth() > 0 && this.getEnemy().getHealth() > 0) {
 				System.out.println();
 				System.out.print("<S>aldýr veya <K>aç: ");
 				String selectCombat = Game.scan.nextLine().toUpperCase();
-				if(selectCombat.equals("S")) {
-					rand = (int)(Math.random() * 2) + 1;
-					if(rand == 1) {
+				if (selectCombat.equals("S")) {
+					rand = (int) (Math.random() * 2) + 1;
+					if (rand == 1) {
 						this.getPlayer().attack(enemy);
 						this.enemy.attack(this.getPlayer());
-					}else {
+					} else {
 						this.enemy.attack(this.getPlayer());
 						this.getPlayer().attack(enemy);
 					}
-				}else {
+				} else {
 					break;
 				}
 			}
-			
-			if(this.getPlayer().getCharacter().getHealth() <= 0) {
+
+			if (this.getPlayer().getCharacter().getHealth() <= 0) {
 				System.out.println();
 				System.out.println("WASTED!!!");
 				return 0;
-			}else if(this.getEnemy().getHealth() <= 0) {
+			} else if (this.getEnemy().getHealth() <= 0) {
 				System.out.println("Tebrikler " + this.getEnemy().getName() + " öldü!!!");
-				this.getPlayer().getCharacter().increaseMoney(this.getEnemy().getReward());
-				if(i != enemyNumber) {
-					System.out.println(i+1 + ". "+this.getEnemy().getName() + " geliyor.");
+				if (this.enemy.getReward() != null) {
+					if (this.enemy.getName().equals("Yýlan")) {
+						System.out.println("Bu yýlandan " + this.enemy.getReward().getName() + " düþtü!!!");
+					}
+					this.enemy.getReward().claim(this.getPlayer());
+				} else {
+					System.out.println("Bu yýlandan hiç ödül düþmedi :(");
 				}
-				this.getEnemy().reNew();
-			}else {
+
+				if (i != enemyNumber) {
+					System.out.println(i + 1 + ". " + this.getEnemy().getName() + " geliyor.");
+				}
+				this.setEnemy(this.getEnemy().reNew());
+			} else {
 				return 1;
 			}
-			
+
 			System.out.println();
 		}
 		return 2;
 	}
-	
+
 	public int randomEnemyNumber() {
 		Random rand = new Random();
 		return rand.nextInt(this.maxEnemy) + 1;

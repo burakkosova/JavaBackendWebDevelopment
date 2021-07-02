@@ -68,23 +68,9 @@ public abstract class PlayerType {
 
 	public abstract void fillHealth();
 
-	public void getInfo() {
-		System.out.println("Hasar: " + this.damage + ", Saðlýk: " + this.health + ", Para: " + this.money);
-	}
-
 	public void buyItem(int price) {
 		this.money -= price;
 		System.out.println("Kasa --> -" + price);
-	}
-
-	public void increaseDamage(int damage) {
-		this.damage += damage;
-		System.out.println("Hasar --> +" + damage);
-	}
-
-	public void decreaseDamage(int damage) {
-		this.damage -= damage;
-		System.out.println("Hasar --> -" + damage);
 	}
 
 	public void decreaseHealth(int health) {

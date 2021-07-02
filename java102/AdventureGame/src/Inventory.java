@@ -25,6 +25,14 @@ public class Inventory {
 	}
 
 	public void setWeapon(Weapon weapon) {
+		System.out.println(this.weapon.getName() + " býrakýldý.");
+		System.out.println(weapon.getName() + " kuþanýldý.");
+		int newDamage = weapon.getDamage() - this.weapon.getDamage();
+		if(newDamage > 0)
+			System.out.println("Hasar --> +" + newDamage);
+		else if(newDamage < 0)
+			System.out.println("Hasar --> " + newDamage);
+		
 		this.weapon = weapon;
 	}
 
@@ -33,16 +41,14 @@ public class Inventory {
 	}
 
 	public void setArmor(Armor armor) {
-		this.armor = armor;
-	}
-
-	public void dropWeapon() {
-		System.out.println(this.weapon.getName() + " býrakýldý.");
-		this.weapon = new Weapon(0, "Yumruk", 0, 0);
-	}
-
-	public void dropArmor() {
 		System.out.println(this.armor.getName() + " býrakýldý.");
-		this.armor = new Armor(0, "Paçavra", 0, 0);
+		System.out.println(armor.getName() + " kuþanýldý.");
+		int newBlock = armor.getBlock() - this.armor.getBlock();
+		if(newBlock > 0)
+			System.out.println("Koruma --> +" + newBlock);
+		else if(newBlock < 0)
+			System.out.println("Koruma --> " + newBlock);
+		
+		this.armor = armor;
 	}
 }

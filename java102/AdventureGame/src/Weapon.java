@@ -1,5 +1,5 @@
 
-public class Weapon {
+public class Weapon implements Reward{
 	private int id;
 	private String name;
 	private int damage;
@@ -62,5 +62,21 @@ public class Weapon {
 	
 	public void printInfo() {
 		System.out.println(this.getId() + " - " + this.getName() + " <Fiyat : " + this.getPrice() + ", Hasar : " + this.getDamage() + ">");
+	}
+	
+	public Weapon getRandomWeapon() {
+		int rand = (int)( Math.random()*10)+1;
+		
+		if(rand == 1 || rand == 2)
+			return Weapon.getWeapons()[2];
+		else if(rand >= 3 && rand <= 5)
+			return Weapon.getWeapons()[1];
+		else 
+			return Weapon.getWeapons()[0];
+	}
+
+	@Override
+	public void claim(Player player) {
+		player.getInventory().setWeapon(getRandomWeapon());
 	}
 }

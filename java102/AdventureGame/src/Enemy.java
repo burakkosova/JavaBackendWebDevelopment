@@ -4,9 +4,9 @@ public abstract class Enemy {
 	private String name;
 	private int damage;
 	private int health;
-	private int reward;
+	private Reward reward;
 	
-	public Enemy(int id, String name, int damage, int health, int reward) {
+	public Enemy(int id, String name, int damage, int health, Reward reward) {
 		this.id = id;
 		this.name = name;
 		this.damage = damage;
@@ -40,11 +40,11 @@ public abstract class Enemy {
 		this.name = name;
 	}
 	
-	public int getReward() {
+	public Reward getReward() {
 		return reward;
 	}
 	
-	public void setReward(int reward) {
+	public void setReward(Reward reward) {
 		this.reward = reward;
 	}
 	
@@ -54,10 +54,14 @@ public abstract class Enemy {
 	public void attack(Player player) {
 		if(this.health > 0) {
 			System.out.println(this.name + " saldýrýyor..." );
-			player.getCharacter().decreaseHealth(this.damage);
+			if(this.damage - player.getInventory().getArmor().getBlock() > 0)
+				player.getCharacter().decreaseHealth(this.damage - player.getInventory().getArmor().getBlock());
+			else
+				System.out.println(player.getInventory().getArmor().getName() + " hasardan korudu!");
+			
 			System.out.println(player.getCharacter().getName() +" "+ player.getName() + " Kalan Saðlýk: " + player.getCharacter().getHealth());
 			System.out.println();
 		}
 	}
-	public abstract void reNew();
+	public abstract Enemy reNew();
 }

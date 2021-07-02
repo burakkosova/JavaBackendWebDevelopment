@@ -2,12 +2,12 @@
 public class Zombie extends Enemy{
 
 	public Zombie() {
-		super(1, "Zombi", 3, 10,4);
+		super(1, "Zombi", 3, 10, new Money(4));
 	}
 
 	@Override
-	public void reNew() {
-		this.setHealth(10);
+	public Enemy reNew() {
+		return new Zombie();
 	}
 
 }

@@ -1,5 +1,5 @@
 
-public class Armor {
+public class Armor implements Reward{
 	private int id;
 	private String name;
 	private int block;
@@ -53,7 +53,7 @@ public class Armor {
 	}
 	
 	public void printInfo() {
-		System.out.println(this.getId() + " - " + this.getName() + " <Fiyat : " + this.getPrice() + ", Zýrh : " + this.getBlock() + ">");
+		System.out.println(this.getId() + " - " + this.getName() + " <Fiyat : " + this.getPrice() + ", Koruma : " + this.getBlock() + ">");
 	}
 
 	public static Armor getArmorById(int selectArmor) {
@@ -62,5 +62,21 @@ public class Armor {
 				return a;
 		}
 		return null;
+	}
+
+	public Armor getRandomArmor() {
+		int rand = (int)( Math.random()*10)+1;
+		
+		if(rand == 1 || rand == 2)
+			return Armor.getArmors()[2];
+		else if(rand >= 3 && rand <= 5)
+			return Armor.getArmors()[1];
+		else 
+			return Armor.getArmors()[0];
+	}
+	
+	@Override
+	public void claim(Player player) {
+		player.getInventory().setArmor(getRandomArmor());
 	}
 }

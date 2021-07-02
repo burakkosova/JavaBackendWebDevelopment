@@ -54,19 +54,23 @@ public class Player {
 
 	public void printInfo() {
 		System.out.print("Silah: "+ this.inventory.getWeapon().getName()
-				+ ", Zýrh: " + this.inventory.getArmor().getName()+" ");
-		this.character.getInfo();
+				+ ", Zýrh: " + this.inventory.getArmor().getName()
+				+", Hasar: "+this.getDamage()
+				+", Saðlýk: "+this.character.getHealth()
+				+", Para: "+this.character.getMoney());
+		
+		if(this.inventory.getArmor().getBlock() > 0)
+			System.out.println(", Koruma: "+this.inventory.getArmor().getBlock());
+		else
+			System.out.println();
+	}
+	
+	private int getDamage() {
+		return this.character.getDamage() + this.inventory.getWeapon().getDamage();
 	}
 	
 	public void buyWeapon(Weapon weapon) {
-		if(this.inventory.getWeapon().getId() != 0) {
-			this.character.decreaseDamage(this.inventory.getWeapon().getDamage());
-			this.inventory.dropWeapon();
-			System.out.println();
-		}
-		
 		if(weapon.getPrice() <= this.character.getMoney()) {
-			this.character.increaseDamage(weapon.getDamage());
 			this.character.buyItem(weapon.getPrice());
 			System.out.println(weapon.getName()+" satýn aldýnýz.");
 			this.inventory.setWeapon(weapon);
@@ -78,14 +82,7 @@ public class Player {
 	}
 
 	public void buyArmor(Armor armor) {
-		if(this.inventory.getArmor().getId() != 0) {
-			this.character.decreaseHealth(this.inventory.getArmor().getBlock());
-			this.inventory.dropArmor();
-			System.out.println();
-		}
-		
 		if(armor.getPrice() <= this.character.getMoney()) {
-			this.character.increaseHealth(armor.getBlock());
 			this.character.buyItem(armor.getPrice());
 			System.out.println(armor.getName()+" satýn aldýnýz.");
 			this.inventory.setArmor(armor);
@@ -96,11 +93,13 @@ public class Player {
 		}
 	}
 
-	
 	public void attack(Enemy enemy) {
-		System.out.println(this.character.getName() +" "+ this.name +" "+ this.inventory.getWeapon().getName()+" ile saldýrýyor..." );
-		enemy.setHealth(enemy.getHealth() - this.character.getDamage());
-		enemy.printInfo();
+		if(this.getCharacter().getHealth() > 0) {
+			System.out.println(this.character.getName() +" "+ this.name +" "+ this.inventory.getWeapon().getName()+" ile saldýrýyor..." );
+			enemy.setHealth(enemy.getHealth() - this.getDamage());
+			enemy.printInfo();
+			System.out.println();
+		}
 	}
 }
 

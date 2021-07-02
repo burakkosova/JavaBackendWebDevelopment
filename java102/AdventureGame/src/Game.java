@@ -29,6 +29,7 @@ public class Game {
 			System.out.println("3 - Maðara");
 			System.out.println("4 - Orman");
 			System.out.println("5 - Nehir");
+			System.out.println("6 - Maden");
 			System.out.print("Lütfen gitmek istediðin bölgeyi seç: ");
 			int selectionLoc = Game.scan.nextInt();
 			switch(selectionLoc) {
@@ -70,6 +71,9 @@ public class Game {
 						location = new River(player);
 						break;
 					}
+				case 6:
+					location = new Mine(player);
+					break;
 				default:
 					location = new SafeHouse(player);
 			}
