@@ -7,6 +7,12 @@ public class SafeHouse extends NormalLocation{
 
 	@Override
 	public boolean onLocation() {
+		if(Game.cleanRegions.size() == 3) {
+			System.out.println("CONGRATULATIONS!!! "+this.getPlayer().getName()+" 3 bölgeyi de temizleyerek oyunu kazandýnnn!");
+			System.exit(0);
+		}
+			
+		
 		System.out.println("Güvenli evdesin burasý senin için güvenli bir yer, düþman yok!");
 		this.getPlayer().getCharacter().fillHealth();
 		System.out.println("Canýn yenilendi !");

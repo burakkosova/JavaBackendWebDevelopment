@@ -1,9 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
 	public Player player;
 	public Location location;
 	public static Scanner scan = new Scanner(System.in);
+	public static List<String> cleanRegions;
+	
+	public Game() {
+		Game.cleanRegions = new ArrayList<String>();
+	}
 	
 	public void start() {
 		System.out.println("Macera Oyununa Hoþgeldiniz!");
@@ -36,19 +43,41 @@ public class Game {
 					location = new ToolStore(player);
 					break;
 				case 3:
-					location = new Cave(player);
-					break;
+					if(Game.cleanRegions.contains("Maðara")) {
+						System.out.println();
+						System.out.println("Maðara bölgesi temizlendi giriþ yapamazsýnýz!");
+						System.out.println();
+						continue;
+					}else {
+						location = new Cave(player);
+						break;
+					}
 				case 4:
-					location = new Forest(player);
-					break;
+					if(Game.cleanRegions.contains("Orman")) {
+						System.out.println();
+						System.out.println("Orman bölgesi temizlendi giriþ yapamazsýnýz!");
+						System.out.println();
+						continue;
+					}else {
+						location = new Forest(player);
+						break;
+					}
 				case 5:
-					location = new River(player);
-					break;
+					if(Game.cleanRegions.contains("Nehir")) {
+						System.out.println();
+						System.out.println("Nehir bölgesi temizlendi giriþ yapamazsýnýz!");
+						System.out.println();
+						continue;
+					}else {
+						location = new River(player);
+						break;
+					}
 				default:
 					location = new SafeHouse(player);
 			}
 			
 			if(location == null) {
+				System.out.println();
 				System.out.println("Çabuk pes ettin!!!");
 				break;
 			}

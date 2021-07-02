@@ -30,19 +30,14 @@ public class BattleLocation extends Location {
 				System.out.println("Tebrikler " + this.getName() + " temizlendi!!!");
 				System.out.println(this.award + " KAZANILDI!!!");
 				this.getPlayer().getInventory().addAward(this.award);
+				Game.cleanRegions.add(this.getName());
 				
 				System.out.println();
-				int count = this.getPlayer().getInventory().getAwards().size();
 				System.out.print("Sahip olduðun ödüller: ");
-				for(int i=0; i<count; i++) {
+				for(int i=0; i<this.getPlayer().getInventory().getAwards().size(); i++) {
 					System.out.print(this.getPlayer().getInventory().getAwards().get(i) + " ");
 				}
-				
 				System.out.println();
-				if(count == 3) {
-					System.out.println("CONGRATULATIONS! " + this.getPlayer().getName() +" "+ count + " ödülü toplayarak oyunu kazandýnnn!!!");
-					System.exit(0);
-				}
 			}
 		}
 		return true;

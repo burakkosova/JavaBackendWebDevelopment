@@ -35,6 +35,8 @@ public class ToolStore extends NormalLocation{
 
 	private void printArmors() {
 		System.out.println();
+		this.getPlayer().printInfo();
+		System.out.println();
 		System.out.println("------ Zýrhlar ------");
 		System.out.println("0 - Geri");
 		for (Armor a : Armor.getArmors()) {
@@ -59,6 +61,8 @@ public class ToolStore extends NormalLocation{
 	}
 
 	private void printWeapons() {
+		System.out.println();
+		this.getPlayer().printInfo();
 		System.out.println();
 		System.out.println("------ Silahlar ------");
 		System.out.println("0 - Geri");
