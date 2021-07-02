@@ -56,6 +56,7 @@ public abstract class Enemy {
 			System.out.println(this.name + " saldýrýyor..." );
 			player.getCharacter().decreaseHealth(this.damage);
 			System.out.println(player.getCharacter().getName() +" "+ player.getName() + " Kalan Saðlýk: " + player.getCharacter().getHealth());
+			System.out.println();
 		}
 	}
 	public abstract void reNew();

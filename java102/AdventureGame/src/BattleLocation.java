@@ -43,6 +43,7 @@ public class BattleLocation extends Location {
 	}
 
 	public int combat(int enemyNumber) {
+		int rand;
 		for(int i=1; i<=enemyNumber; i++) {
 			getPlayer().printInfo();
 			while(this.getPlayer().getCharacter().getHealth() > 0 && this.getEnemy().getHealth() > 0) {
@@ -50,8 +51,14 @@ public class BattleLocation extends Location {
 				System.out.print("<S>aldýr veya <K>aç: ");
 				String selectCombat = Game.scan.nextLine().toUpperCase();
 				if(selectCombat.equals("S")) {
-					this.getPlayer().attack(enemy);
-					this.enemy.attack(this.getPlayer());
+					rand = (int)(Math.random() * 2) + 1;
+					if(rand == 1) {
+						this.getPlayer().attack(enemy);
+						this.enemy.attack(this.getPlayer());
+					}else {
+						this.enemy.attack(this.getPlayer());
+						this.getPlayer().attack(enemy);
+					}
 				}else {
 					break;
 				}
