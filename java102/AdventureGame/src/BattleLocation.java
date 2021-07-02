@@ -30,7 +30,6 @@ public class BattleLocation extends Location {
 				System.out.println("Tebrikler " + this.getName() + " temizlendi!!!");
 				System.out.println(this.award + " KAZANILDI!!!");
 				this.getPlayer().getInventory().addAward(this.award);
-				Game.cleanRegions.add(this.getName());
 				
 				System.out.println();
 				System.out.print("Sahip olduðun ödüller: ");

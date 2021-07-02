@@ -1,16 +1,14 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Game {
 	public Player player;
 	public Location location;
 	public static Scanner scan = new Scanner(System.in);
-	public static List<String> cleanRegions;
+//	public static List<String> cleanRegions;
 	
-	public Game() {
-		Game.cleanRegions = new ArrayList<String>();
-	}
+//	public Game() {
+//		Game.cleanRegions = new ArrayList<String>();
+//	}
 	
 	public void start() {
 		System.out.println("Macera Oyununa Hoþgeldiniz!");
@@ -43,7 +41,7 @@ public class Game {
 					location = new ToolStore(player);
 					break;
 				case 3:
-					if(Game.cleanRegions.contains("Maðara")) {
+					if(this.player.getInventory().getAwards().contains("Yemek")) {
 						System.out.println();
 						System.out.println("Maðara bölgesi temizlendi giriþ yapamazsýnýz!");
 						System.out.println();
@@ -53,7 +51,7 @@ public class Game {
 						break;
 					}
 				case 4:
-					if(Game.cleanRegions.contains("Orman")) {
+					if(this.player.getInventory().getAwards().contains("Odun")) {
 						System.out.println();
 						System.out.println("Orman bölgesi temizlendi giriþ yapamazsýnýz!");
 						System.out.println();
@@ -63,7 +61,7 @@ public class Game {
 						break;
 					}
 				case 5:
-					if(Game.cleanRegions.contains("Nehir")) {
+					if(this.player.getInventory().getAwards().contains("Su")) {
 						System.out.println();
 						System.out.println("Nehir bölgesi temizlendi giriþ yapamazsýnýz!");
 						System.out.println();
